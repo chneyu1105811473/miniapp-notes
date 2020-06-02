@@ -1,0 +1,4 @@
+.guide-tip{
+  color: orangered;
+  font-size: 20rpx;
+}

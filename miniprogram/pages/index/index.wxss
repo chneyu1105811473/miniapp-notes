@@ -1,0 +1,25 @@
+/**
+* index.wxss
+*/
+.container{
+  width: 100%;
+}
+.title{
+  text-align: center;
+  margin-top: 200rpx;
+  font-size: 40rpx;
+  color: #ccc;
+}
+.guide{
+  position: fixed;
+  bottom: 200rpx;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.guide-tip{
+    margin-bottom: 20rpx;
+}
