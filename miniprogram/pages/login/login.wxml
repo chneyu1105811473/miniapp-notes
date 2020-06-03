@@ -1,0 +1,17 @@
+<view class="container">
+  <view class="title">开</view>
+  <view class="title">启</view>
+  <view class="title">个</view>
+  <view class="title">人</view>
+  <view class="title">记</view>
+  <view class="title">账</view>
+  <view class="title">之</view>
+  <view class="title">旅</view>
+  <view class="guide">
+    <view class="guide-tip">
+      * 记账功能-【去记账】需要获取微信个人信息
+    </view>
+    <van-button type="primary" round  size="large" bind:tap="getUserInfo">去记账</van-button>
+  </view>
+</view>
+

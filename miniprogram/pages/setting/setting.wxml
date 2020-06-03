@@ -1,0 +1,25 @@
+<!--pages/setting/setting.wxml-->
+<view class="page">
+  <view class='header_bg bg-green'>
+    <image src='{{avatarUrl}}'></image>
+  </view>
+  <view class='foot_bg'>
+    <view class='tm_item'>
+      <text>{{username}}</text>  
+    </view>
+    <view class='line'></view>
+    <view class='tm_item'>
+      <text>{{gender}}</text>
+    </view>
+    <view class='line'></view>
+     <view class='tm_item'>
+      <text>{{language}}</text>
+    </view>
+    <view class='line'></view>
+     <view class='tm_item'>
+      <text>{{country}} - {{province}} - {{city}}</text>
+    </view>
+    <view class='line'></view>
+  </view>
+   <van-button bind:click="handleClick" type="primary" round>退出登录</van-button>
+</view>

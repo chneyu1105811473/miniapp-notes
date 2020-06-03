@@ -1,4 +1,7 @@
 .guide-tip{
-  color: orangered;
   font-size: 20rpx;
+}
+
+.bg-green{
+  background-color: #07c160;
 }

@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/board/board",
+    "pages/login/login",
+    "pages/setting/setting",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
@@ -19,7 +20,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "我的记事本",
+    "navigationBarTitleText": "我的账本",
     "navigationBarTextStyle": "black"
   },
   "usingComponents":{
@@ -85,6 +86,26 @@
     "van-dropdown-item": "./dist/dropdown-item/index",
     "van-skeleton": "./dist/skeleton/index",
     "van-calendar": "./dist/calendar/index"
+  },
+  "tabBar": {
+    "color": "#101010",
+    "selectedColor": "#35495e",
+    "borderStyle": "white",
+    "backgroundColor": "#f9f9f9",
+    "list": [
+      {
+        "text": "记账",
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icon_dp.png",
+        "selectedIconPath": "images/icon_dp_select.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/setting/setting",
+        "iconPath": "images/icon_me.png",
+        "selectedIconPath": "images/icon_me_select.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2"

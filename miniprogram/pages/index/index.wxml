@@ -1,10 +1,11 @@
-<view class="container">
-  <view class="title">个人记账工具</view>
-  <view class="guide">
-    <view class="guide-tip">
-      * 开启记账功能-【去记账】需要获取您的个人信息
-    </view>
-    <van-button type="primary" round  size="large" bind:tap="getUserInfo">去记账</van-button>
+<view class="notes-list">
+  <!-- 收支数据 -->
+  <view class="notes-content" wx:if="{{list.length}}">
+    
+  </view>
+  <!-- 没有任何内容 -->
+  <view class="notes-empty" wx:else>
+    <view class="add-img" bind:tap="addNotes"></view>
+    嗯...您还没有任何收支信息
   </view>
 </view>
-
