@@ -3,7 +3,7 @@
 */
 .notes-empty{
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,4 +33,61 @@
 }
 .add-img::after{
   transform: translateX(-50%) rotate(90deg);
+}
+.notes-item{
+  margin: 20rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  box-shadow: 0 0 30rpx rgba(200,200,200,3);
+}
+.opt-button{
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 30rpx;
+  color: #666;
+}
+.notes-time{
+  position: absolute;
+  left: 0;
+  color: #ccc;
+  font-size: 30rpx;
+}
+.opt-button .delete-btn{
+  color: red;
+  margin-left: 40rpx;
+}
+/* 添加记录按钮 */
+.add-notes{
+  position: fixed;
+  bottom: 10%;
+  right: 5%;
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50rpx;
+  color: #fff;
+  border-radius: 100%;
+  box-shadow: 0 0 20rpx #999;
+  overflow: hidden;
+}
+.add-category{
+  padding: 10rpx 20rpx;
+  color: #fff;
+  border-radius: 10rpx;
+}
+/* 表单 */
+.notes-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx;
+}
+.category-form{
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx;
+  align-items: center;
 }

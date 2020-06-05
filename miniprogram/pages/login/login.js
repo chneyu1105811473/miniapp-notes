@@ -9,23 +9,24 @@ Page({
   data:{
   },
   getUserInfo(){
-    request({
-      name:'login'
-    }).then(res=>{
-      wx.setStorageSync('token', res.openid);
-      wx.getUserInfo({
-        success(res){
+    wx.getUserInfo({
+      success(res){
+        request({
+          name:'login',
+        }).then(result=>{
+          wx.setStorageSync('token', result.openid);
           app.globalData.userInfo = res.userInfo
-        }
-      })
-      wx.switchTab({
-        url: '/pages/index/index',
-      });
-    }).catch(err=>{
-      console.log(err.message||err.errMsg)
-      Toast({
-        message:err.message||err.errMsg
-      });
+          app.globalData.openid = result.openid
+          wx.switchTab({
+            url: '/pages/index/index',
+          });
+        }).catch(err=>{
+          Toast({
+            message:err.message||err.errMsg
+          });
+        })
+      }
     })
+    
   }
 })

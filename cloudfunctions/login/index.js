@@ -17,24 +17,24 @@ const db = cloud.database()
  * 
  */
 exports.main = async (event, context) => {
-  // console.log(event)
-  // console.log(context)
 
+  const {OPENID} = cloud.getWXContext()
+
+  console.log(OPENID)
   const {token} = event
   // 可执行其他自定义逻辑
   // console.log 的内容可以在云开发云函数调用日志查看
 
   // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）等信息
-  const {OPENID} = cloud.getWXContext()
-  console.log(token)
-  console.log(OPENID)
+  
   if(!token||token===OPENID){
     //写入用户token
-    const res = await db.collection('users').get({token:OPENID})
+    const res = await db.collection('users').where({token:OPENID}).get()
     if(!res.data.length){
       await db.collection('users').add({
         data:{
-          token:OPENID
+          token:OPENID,
+          createTime:new Date()
         }
       })
     }

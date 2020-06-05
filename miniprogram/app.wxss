@@ -5,3 +5,11 @@
 .bg-green{
   background-color: #07c160;
 }
+
+.margin-top40{
+  margin-top: 40rpx;
+}
+/* 修改vant 默认样式 */
+.my-pop .van-popup{
+  width: 80%;
+}

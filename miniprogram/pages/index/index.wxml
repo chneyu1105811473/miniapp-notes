@@ -1,11 +1,131 @@
 <view class="notes-list">
+  <!-- 筛选时间 -->
+  <!-- 筛选收支 -->
   <!-- 收支数据 -->
-  <view class="notes-content" wx:if="{{list.length}}">
-    
+  <view class="notes-content" wx:if="{{notes.length}}">
+    <view class="notes-item" wx:for="{{notes}}" wx:for-item="item" wx:key="index">
+      <van-panel 
+      title="{{item.amount}} {{item.category.name}}" 
+      desc="{{item.des}}" 
+      status="{{item.type===0?'支出':'收入'}}" 
+      use-footer-slot>
+        <view class="opt-button" slot="footer">
+          <view class="notes-time">{{item.time}}</view>
+          <view class="edit-btn" mark:current="{{item}}" bind:tap="editNotes">编辑</view>
+          <view class="delete-btn" mark:current="{{item}}" bind:tap="removeNotes">删除</view>
+        </view>
+      </van-panel>
+    </view>
   </view>
   <!-- 没有任何内容 -->
   <view class="notes-empty" wx:else>
-    <view class="add-img" bind:tap="addNotes"></view>
+    <view class="add-img" bind:tap="showNotesForm"/>
     嗯...您还没有任何收支信息
   </view>
+
+  <!-- 分割线 -->
+  <van-divider contentPosition="center" bind:tap="getNotes">{{finished?'我是有底线的':'点我看更多'}}</van-divider>
+
+  <!--添加消费记录 popup -->
+  <van-popup show="{{ show }}" round bind:close="onClose" class="my-pop">
+    <view class="notes-form">
+      <!-- 时间选择 -->
+      <picker mode="date" value="{{time}}" bindchange="bindDateChange">
+        <van-field
+        value="{{time}}"
+        required
+        clearable
+        label="收支时间"/>
+      </picker>
+      <!-- 收支类型 -->
+      <picker value="{{typeIndex}}" bindchange="bindTypeChange" range="{{types}}">
+        <van-field
+        value="{{types[typeIndex]}}"
+        required
+        clearable
+        label="选择收支"
+        />
+      </picker>
+      <!-- 类目类型 -->
+      <picker 
+      wx:if="{{categories.length}}" 
+      value="{{categoryIndex}}" 
+      bindchange="bindCategoryChange"
+      range-key="name" 
+      range="{{categories}}">
+        <van-field
+        value="{{categories[categoryIndex].name}}"
+        required
+        disabled
+        label="选择类目"
+        />
+      </picker>
+      <van-field required disabled placeholder="没有类目可选择" wx:else>
+        <view slot="label">选择类目</view>
+        <view slot="button" class="add-category bg-green" bind:tap="showCategoryForm">添加</view>
+      </van-field>
+      <!-- 金额 -->
+      <van-field
+        value="{{ amount }}"
+        bind:blur="changeAmount"
+        required
+        clearable
+        label="金额（元）"
+        placeholder="请输入金额..."
+        />
+      <!-- 备注 -->
+      <van-field
+        value="{{ des }}"
+        label="备注"
+        bind:blur="changeDes"
+        placeholder="请输入备注信息..."
+        autosize
+        border="{{ false }}"
+      />
+      <!-- 提交按钮 -->
+      <van-button 
+      type="primary" 
+      class="margin-top40" 
+      round 
+      size="small" 
+      bind:tap="addNotes"
+      >添加</van-button>
+    </view>
+  </van-popup>
+   <!--添加类目 popup -->
+  <van-popup 
+  position="bottom" 
+  show="{{ showCategoryForm }}" 
+  round 
+  bind:close="onCloseCategryForm"
+  >
+    <view class="category-form">
+      <!-- 金额 -->
+      <van-field
+        value="{{ categoryName }}"
+        clearable
+        bind:blur="changeCategory"
+        placeholder="请输入类目名..."
+        />
+      <!-- 提交按钮 -->
+      <van-button 
+      type="primary" 
+      round 
+      size="small" 
+      class="margin-top40" 
+      bind:tap="addCategory"
+      >添加</van-button>
+    </view>
+  </van-popup>
+  <!-- 添加按钮 -->
+  <view 
+  class="add-notes bg-green" 
+  hover-class="active-button" 
+  bind:tap="showNotesForm" 
+  wx:if="{{notes.length}}"
+  >+</view>
+  <!-- 选择器 -->
+  <!-- toast -->
+  <van-toast id="van-toast"/>
+  <van-dialog id="van-dialog" />
 </view>

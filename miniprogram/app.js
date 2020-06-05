@@ -2,7 +2,7 @@
 import request from './common/request'
 
 App({
-  onLaunch: function () {
+  onLaunch() {
     //判断是否有用户信息，如果以获取用户信息，直接跳转到首页，否则调到登录页面
     const that = this
 
@@ -29,6 +29,8 @@ App({
               wx.getUserInfo({
                 success: (result)=>{
                   that.globalData.userInfo = result.userInfo
+                  that.globalData.openid = token
+                  console.log(that.globalData)
                   wx.navigateTo({
                     url: '/pages/index/index',
                   });
@@ -36,7 +38,6 @@ App({
               });
             }).catch((err)=>{
               console.log(err)
-              // throw new Error('token与openid不匹配')
             })
       }else{
         throw new Error('token不存在')
@@ -46,10 +47,9 @@ App({
         url: '/pages/login/login',
       });
     }
-   
-
-    this.globalData = {
-      userInfo:{}
-    }
+  },
+  globalData:{
+    userInfo:{},
+    openid:'oQYZ35DlT3FGw4gSkk_ILiVvkJVI'
   }
 })

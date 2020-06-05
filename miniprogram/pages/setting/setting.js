@@ -32,6 +32,7 @@ Page({
       province:userInfo.province,
       country:userInfo.country
     })
+
   },
   handleClick: function (res) {
     wx.clearStorageSync();

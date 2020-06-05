@@ -8,7 +8,7 @@ function request({name,data}){
       if(result.code===200){
         resolve(result.data)
       }else{
-        reject(new Error(result.message))
+        reject(new Error(result.message||JSON.stringify(result)))
       }
     }).catch(err=>{
       reject(err)
