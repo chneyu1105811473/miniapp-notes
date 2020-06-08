@@ -6,6 +6,20 @@ App({
     //判断是否有用户信息，如果以获取用户信息，直接跳转到首页，否则调到登录页面
     const that = this
 
+    //判断登录
+    const token = wx.getStorageSync('token')
+    console.log(token)
+    if(token){
+      that.globalData.openid = token
+      wx.navigateTo({
+        url: '/pages/index/index',
+      });
+    }else{
+      wx.navigateTo({
+        url: '/pages/login/login',
+      });
+    }
+
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -19,33 +33,6 @@ App({
         env: 'notes-test-940318',
         traceUser: true,
       })
-    }
-
-    try{
-      const token = wx.getStorageSync('token')
-      if(token){
-        request({name:'login',data:{token}})
-            .then(res=>{
-              wx.getUserInfo({
-                success: (result)=>{
-                  that.globalData.userInfo = result.userInfo
-                  that.globalData.openid = token
-                  console.log(that.globalData)
-                  wx.navigateTo({
-                    url: '/pages/index/index',
-                  });
-                }
-              });
-            }).catch((err)=>{
-              console.log(err)
-            })
-      }else{
-        throw new Error('token不存在')
-      }
-    }catch(err){
-      wx.navigateTo({
-        url: '/pages/login/login',
-      });
     }
   },
   globalData:{

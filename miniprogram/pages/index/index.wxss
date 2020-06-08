@@ -91,3 +91,13 @@
   padding: 40rpx;
   align-items: center;
 }
+.category-picker{
+  position: relative;
+}
+.button-category{
+  position: absolute;
+  right: 0;
+  z-index: 999;
+  top: 50%;
+  transform: translateY(-50%);
+}

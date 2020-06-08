@@ -11,9 +11,7 @@
     <view class="guide-tip">
       * 记账功能-【去记账】需要获取微信个人信息
     </view>
-    <van-button type="primary" round  size="large" bind:tap="getUserInfo">去记账</van-button>
+    <button type="primary" round open-type="getUserInfo" bindgetuserinfo="getUserInfo">去记账</button>
   </view>
-  <!-- toast -->
-  <van-toast id="van-toast"></van-toast>
 </view>
 

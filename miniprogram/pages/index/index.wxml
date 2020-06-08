@@ -34,7 +34,7 @@
         <van-field
         value="{{time}}"
         required
-        clearable
+        disabled
         label="收支时间"/>
       </picker>
       <!-- 收支类型 -->
@@ -42,27 +42,40 @@
         <van-field
         value="{{types[typeIndex]}}"
         required
-        clearable
+        disabled
         label="选择收支"
         />
       </picker>
       <!-- 类目类型 -->
-      <picker 
-      wx:if="{{categories.length}}" 
-      value="{{categoryIndex}}" 
-      bindchange="bindCategoryChange"
-      range-key="name" 
-      range="{{categories}}">
-        <van-field
-        value="{{categories[categoryIndex].name}}"
-        required
-        disabled
-        label="选择类目"
-        />
-      </picker>
+      <view class="category-picker" wx:if="{{categories.length}}">
+        <picker 
+        value="{{categoryIndex}}" 
+        bindchange="bindCategoryChange"
+        range-key="name"
+        range="{{categories}}">
+          <van-field
+          wx:if="{{categories.length}}"
+          value="{{categories[categoryIndex].name}}"
+          required
+          disabled
+          label="选择类目"
+          />
+        </picker>
+        <van-button 
+        class="button-category"
+        size="mini" 
+        type="primary"
+        bind:tap="showCategoryForm"
+        >添加</van-button>
+      </view>
+      
       <van-field required disabled placeholder="没有类目可选择" wx:else>
         <view slot="label">选择类目</view>
-        <view slot="button" class="add-category bg-green" bind:tap="showCategoryForm">添加</view>
+        <view 
+        slot="button" 
+        class="add-category bg-green" 
+        bind:tap="showCategoryForm"
+        >添加</view>
       </van-field>
       <!-- 金额 -->
       <van-field
@@ -84,9 +97,9 @@
       />
       <!-- 提交按钮 -->
       <van-button 
+      round 
       type="primary" 
       class="margin-top40" 
-      round 
       size="small" 
       bind:tap="addNotes"
       >添加</van-button>
@@ -94,23 +107,23 @@
   </van-popup>
    <!--添加类目 popup -->
   <van-popup 
+  round 
   position="bottom" 
   show="{{ showCategoryForm }}" 
-  round 
   bind:close="onCloseCategryForm"
   >
     <view class="category-form">
       <!-- 金额 -->
       <van-field
-        value="{{ categoryName }}"
         clearable
+        value="{{ categoryName }}"
         bind:blur="changeCategory"
         placeholder="请输入类目名..."
         />
       <!-- 提交按钮 -->
       <van-button 
-      type="primary" 
       round 
+      type="primary" 
       size="small" 
       class="margin-top40" 
       bind:tap="addCategory"
@@ -125,6 +138,7 @@
   wx:if="{{notes.length}}"
   >+</view>
   <!-- 选择器 -->
+  <!-- <van-picker columns="{{ columns }}" bind:change="onChange" /> -->
   <!-- toast -->
   <van-toast id="van-toast"/>
   <van-dialog id="van-dialog" />

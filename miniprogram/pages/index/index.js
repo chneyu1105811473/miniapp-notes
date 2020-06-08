@@ -2,8 +2,8 @@
 import Page from '../../common/page'
 import request from '../../common/request'
 import formatTime from '../../utils/index'
-import Toast from '../../dist/toast/toast'
-import Dialog from '../../dist/dialog/dialog'
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast'
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog'
 
 const app = getApp()
 
@@ -37,8 +37,14 @@ Page({
     })
   },
   getNotes(isNew=false){
+    if(isNew){
+      this.setData({
+        finished:false,
+        pageSize:1
+      })
+    }
     if(this.data.finished)return
-
+    
     const that = this
     request({
       name:'getNotes',
@@ -200,9 +206,6 @@ Page({
           openid:app.globalData.openid
         }
       }).then(()=>{
-        that.setData({
-          finished:false
-        })
         that.getNotes(true)
       })
       .catch((err)=>Toast(err.message))
