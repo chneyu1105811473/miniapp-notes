@@ -102,7 +102,7 @@
       class="margin-top40" 
       size="small" 
       bind:tap="addNotes"
-      >添加</van-button>
+      >确定</van-button>
     </view>
   </van-popup>
    <!--添加类目 popup -->

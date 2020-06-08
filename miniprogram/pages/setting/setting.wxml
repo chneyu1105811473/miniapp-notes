@@ -3,23 +3,13 @@
   <view class='header_bg bg-green'>
     <image src='{{avatarUrl}}'></image>
   </view>
-  <view class='foot_bg'>
-    <view class='tm_item'>
-      <text>{{username}}</text>  
-    </view>
-    <view class='line'></view>
-    <view class='tm_item'>
-      <text>{{gender}}</text>
-    </view>
-    <view class='line'></view>
-     <view class='tm_item'>
-      <text>{{language}}</text>
-    </view>
-    <view class='line'></view>
-     <view class='tm_item'>
-      <text>{{country}} - {{province}} - {{city}}</text>
-    </view>
-    <view class='line'></view>
+  <van-cell-group>
+    <van-cell title="姓名" value="{{username}}" />
+    <van-cell title="性别" value="{{gender}}" />
+    <van-cell title="语言" value="{{language}}" />
+    <van-cell title="地址" value="{{country}} - {{province}} - {{city}}" />
+  </van-cell-group>
+  <view class="center">
+    <van-button bind:click="handleClick" type="primary" size="large" round>退出登录</van-button>
   </view>
-   <van-button bind:click="handleClick" type="primary" round>退出登录</van-button>
 </view>

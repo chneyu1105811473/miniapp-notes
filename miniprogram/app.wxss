@@ -9,6 +9,11 @@
 .margin-top40{
   margin-top: 40rpx;
 }
+
+.center{
+  max-width: 60%;
+  margin:50rpx auto 0;
+}
 /* 修改vant 默认样式 */
 .my-pop .van-popup{
   width: 80%;
